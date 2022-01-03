@@ -69,13 +69,22 @@
               <h2 class="section-title">Code Example</h2>
               <pre>
                 <code>
-                    let arr=[1,2,3,4,5,6,7,8,9];
-                    let result="";
-                    for (let i=0; i<arr.length;i++){
-                        
-                            result=result+'-'+arr[i];
-                    }
-                    console.log(result+'-');
+                    <?php
+                        include_once("db.php");
+                        if(isset($_POST["sbm"])){
+                            $sql="SELECT count(*) as c FROM people WHERE login='".$_POST["userlog"]."' and password='".$_POST["userpass"]."'";
+
+                        $r=$m->query($sql);
+                        $res=$r->fetch_assoc();
+                        if ($res["c"]>0) {
+                            setcookie("is_auth", "1", time()+3600);
+                            header("location: profile.php");
+                            exit();
+                        }else{
+                            echo "такого пользователя нет";
+                        }
+                        }
+                    ?>
                 </code>
                 </pre>
           </section>
