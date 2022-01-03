@@ -69,11 +69,9 @@
               <h2 class="section-title">Code Example</h2>
               <pre>
                 <code>
-                    <?php
                         include_once("db.php");
                         if(isset($_POST["sbm"])){
                             $sql="SELECT count(*) as c FROM people WHERE login='".$_POST["userlog"]."' and password='".$_POST["userpass"]."'";
-
                         $r=$m->query($sql);
                         $res=$r->fetch_assoc();
                         if ($res["c"]>0) {
@@ -84,7 +82,6 @@
                             echo "такого пользователя нет";
                         }
                         }
-                    ?>
                 </code>
                 </pre>
           </section>
